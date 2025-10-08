@@ -23,7 +23,9 @@ jobs:
       #   # Et change "local-dir" plus bas vers le dossier de sortie (ex: dist/)
 
       - name: Deploy via FTP to OVH
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+
+      
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -31,6 +33,7 @@ jobs:
           server-dir: ${{ secrets.FTP_PATH }}/
           local-dir: ./
           dangerous-clean-slate: false
+
           exclude: |
             **/.git*
             **/.github/**
