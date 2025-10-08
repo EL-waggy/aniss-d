@@ -1,0 +1,39 @@
+name: Deploy to OVH via FTP
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Décommente ces 3 étapes si un jour tu buildes avec Node/Vite/React
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20'
+      # - name: Install deps & build
+      #   run: |
+      #     npm ci
+      #     npm run build
+      #   # Et change "local-dir" plus bas vers le dossier de sortie (ex: dist/)
+
+      - name: Deploy via FTP to OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_PATH }}/
+          local-dir: ./
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
+            node_modules/**
+            .DS_Store
+            .env
