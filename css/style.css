@@ -245,6 +245,9 @@ textarea {
   }
 }
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ou 100svh pour mobile */
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #0d1117;
@@ -314,9 +317,9 @@ nav a:hover {
 footer {
   background-color: #161b22;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   font-size: 14px;
-  margin-top: 50px;
+  margin-top: auto;
 }
 
 
