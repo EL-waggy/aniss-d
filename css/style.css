@@ -326,11 +326,13 @@ footer {
 /* index.html*/
 .hero-img {
   display: block;
-  width: 800px;               /* taille de base, modifiable facilement */
+  width: 380px;               /* taille de base, modifiable facilement */
   max-width: 100%;            /* pour rester responsive */
   border-radius: 15px;
   box-shadow: 0 0 20px #58a6ff44;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 /* Effet au survol (optionnel) */
@@ -341,6 +343,8 @@ footer {
 
 /* Si tu veux centrer ou décaler l’image, tu peux aussi jouer avec ces propriétés : */
 .hero {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: space-between;  /* left & right */
   align-items: center;
