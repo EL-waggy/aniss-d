@@ -325,6 +325,7 @@ footer {
 
 /* index.html*/
 .hero-img {
+  display: block;
   width: 800px;               /* taille de base, modifiable facilement */
   max-width: 100%;            /* pour rester responsive */
   border-radius: 15px;
