@@ -2,44 +2,45 @@ name: Deploy to OVH via FTP
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
+  workflow_dispatch: {}   # permet de lancer à la main
 
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    concurrency:
+      group: deploy-ovh
+      cancel-in-progress: true
+    permissions:
+      contents: read
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Décommente ces 3 étapes si un jour tu buildes avec Node/Vite/React
-      # - name: Setup Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20'
-      # - name: Install deps & build
-      #   run: |
+      # (Si un jour tu buildes, décommente setup-node + build)
+      # - uses: actions/setup-node@v4
+      #   with: { node-version: '20' }
+      # - run: |
       #     npm ci
       #     npm run build
-      #   # Et change "local-dir" plus bas vers le dossier de sortie (ex: dist/)
+      # (et passe local-dir: vers dist/ par ex.)
 
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-
-
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USERNAME }}
+          password:   ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_PATH }}/
-          local-dir: ./
+          local-dir:  ./
           dangerous-clean-slate: false
-
           exclude: |
-            **/.git**
+            **/.git/**
             **/.github/**
             **/node_modules/**
             **/package-lock.json
             **/package.json
             **/.env
             **/.DS_Store
-
