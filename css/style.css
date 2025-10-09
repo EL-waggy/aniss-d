@@ -341,15 +341,16 @@ footer {
   box-shadow: 0 0 25px #58a6ff88;
 }
 
-/* Si tu veux centrer ou décaler l’image, tu peux aussi jouer avec ces propriétés : */
+/*entrer ou décaler l’image, tu peux aussi jouer avec ces propriétés : */
 .hero {
-  position: relative;
-  z-index: 1;
+
   display: flex;
   justify-content: space-between;  /* left & right */
   align-items: center;
   padding: 80px 10%;
   gap: 40px;                       /* espace entre le texte et l’image */
+  position: relative;
+  z-index: 1;
 }
 
-/* index.html fin
+/* index.html fin*/
