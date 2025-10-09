@@ -25,7 +25,7 @@ jobs:
       - name: Deploy via FTP to OVH
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
 
-      
+
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -35,8 +35,11 @@ jobs:
           dangerous-clean-slate: false
 
           exclude: |
-            **/.git*
+            **/.git**
             **/.github/**
-            node_modules/**
-            .DS_Store
-            .env
+            **/node_modules/**
+            **/package-lock.json
+            **/package.json
+            **/.env
+            **/.DS_Store
+
