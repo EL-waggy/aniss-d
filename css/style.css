@@ -414,4 +414,8 @@ footer {
 .footer-link:hover {
   text-decoration: underline;
 }
+/* invisibilqstion de la section contact */
+#section-contact {
+  display: none;
+}
 
