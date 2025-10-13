@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aniss Dahaoui.exe</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  <meta name="description" content="Portfolio et blog d'Aniss Dah : développement web, IA et expérimentations numériques.">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -23,42 +23,113 @@
 </head>
 
 <body>
-<header>
-  <nav>
-    <h1><a href="/">Aniss D.exe</a> </h1>
-    <ul>
-      <li><a href="./">Accueil</a></li>
-      <li><a href="#">À propos</a></li>
-      <li><a href="Projets/">Projets</a></li>
-      <li><a href="../blog/">blog</a></li>
-      <li><a href="../recette">recettes</a></li>
-      <li><a href="#">Sport</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="../Politique%20de%20confidentialité/">Politique de confidentialitée</a></li>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Navigation principale">
+    <a href="/" class="logo">Aniss D.exe</a>
+    <ul class="nav-links">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/#about">À propos</a></li>
+      <li><a href="/Projets/">Projets</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/recette/">Recettes</a></li>
+      <li><a href="/sport/">Sport</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
     </ul>
   </nav>
 </header>
-<h2>Le site est en cours de construction et d'experimentation</h2>
-<section class="hero">
-  <div class="hero-content">
-    <h2>Bienvenue sur mon site les tocards👋</h2>
-    <p>zebi</p>
-    <a href="Projets/" class="btn">Découvrir mes projets</a>
-  </div>
-  <img src="img/index/presentation_ia.png" alt="Photo de présentation" class="hero-img">
-<p>Pour l'instant ce site est static donc je vais faire simple avec du html css et js</p>
-</section>
 
-<section class="about">
-  <h2>À propos</h2>
-  <p>Ce site est mon espace personnel où je partage mes projets, mes idées et mes apprentissages en développement web et logiciels.   </p>
-</section>
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <p class="hero-kicker">Développeur full-stack & créateur de contenu</p>
+      <h1 id="hero-title">Bienvenue dans mon laboratoire numérique 👋</h1>
+      <p class="hero-text">
+        Je conçois des expériences web modernes, partage mes découvertes techniques et documente mes
+        apprentissages. Parcours mes projets, lis le blog ou contacte-moi pour discuter d'une collaboration.
+      </p>
+      <div class="hero-actions">
+        <a href="/Projets/" class="btn">Explorer mes projets</a>
+        <a href="/contact/" class="btn btn-secondary">Discuter ensemble</a>
+      </div>
+    </div>
+    <img src="img/index/presentation_ia.png" alt="Illustration d'intelligence artificielle" class="hero-img">
+  </section>
+
+  <section class="status-banner" aria-live="polite">
+    <h2 class="sr-only">Informations</h2>
+    <p>Ce site évolue en permanence : nouvelles fonctionnalités, expériences et partages réguliers.</p>
+  </section>
+
+  <section class="about" id="about">
+    <div class="section-header">
+      <h2 class="section-title">À propos</h2>
+      <p class="section-subtitle">Un mélange de curiosité, de veille technologique et de projets concrets.</p>
+    </div>
+    <div class="about-grid">
+      <article class="about-card">
+        <h3>Développement</h3>
+        <p>Je construis des interfaces réactives, des API robustes et j'explore l'IA générative pour créer des
+          expériences plus intelligentes.</p>
+      </article>
+      <article class="about-card">
+        <h3>Veille & partage</h3>
+        <p>Je documente mes découvertes sur le blog afin de rendre mes apprentissages accessibles et d'aider la
+          communauté.</p>
+      </article>
+      <article class="about-card">
+        <h3>Expérimentations</h3>
+        <p>Chaque projet est l'occasion de tester de nouveaux outils, d'améliorer mes pratiques et de sortir de ma
+          zone de confort.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="highlights" aria-labelledby="highlights-title">
+    <div class="section-header">
+      <h2 id="highlights-title" class="section-title">Explorer</h2>
+      <p class="section-subtitle">Quelques portes d'entrée pour découvrir l'univers d'Aniss.</p>
+    </div>
+    <div class="highlight-grid">
+      <article class="highlight-card">
+        <h3>Projets en vedette</h3>
+        <p>Une sélection d'applications web, d'outils et d'expériences créatives réalisés ces dernières années.</p>
+        <a href="/Projets/" class="card-link">Voir mes projets</a>
+      </article>
+      <article class="highlight-card">
+        <h3>Articles du blog</h3>
+        <p>Des retours d'expérience, des tutoriels et de la veille technologique pour rester à jour.</p>
+        <a href="/blog/" class="card-link">Lire le blog</a>
+      </article>
+      <article class="highlight-card">
+        <h3>Recettes & sport</h3>
+        <p>Une bulle plus personnelle où je partage mes routines sportives et mes recettes préférées.</p>
+        <div class="card-actions">
+          <a href="/recette/" class="card-link">Recettes</a>
+          <a href="/sport/" class="card-link">Sport</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-contact" aria-labelledby="cta-title">
+    <div class="cta-content">
+      <h2 id="cta-title">Travaillons ensemble</h2>
+      <p>Un projet, une idée ou simplement envie d'échanger ? Je suis toujours partant pour découvrir de nouveaux
+        défis.</p>
+      <a href="/contact/" class="btn">Accéder à la page contact</a>
+    </div>
+  </section>
+</main>
+
 <script src="js/app.js"></script>
 
-<footer>
-  <p>© 2025 Aniss Dah. Tous droits réservés. —
-    <a href="./" class="footer-link">Politique de confidentialité</a>
-  </p>
+<footer class="site-footer">
+  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
+  <nav aria-label="Navigation secondaire">
+    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
+    <a href="/contact/" class="footer-link">Contact</a>
+  </nav>
 </footer>
 </body>
 </html>
