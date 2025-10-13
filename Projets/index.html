@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>projet</title>
+  <title>Projets - Aniss D.exe</title>
   <link rel="stylesheet" href="../css/style.css">
-  <meta name="description" content="">
+  <meta name="description" content="Découvrez les projets web, IA et outils réalisés par Aniss Dah.">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -18,45 +18,57 @@
   <link rel="icon" href="../img/index/image-principale-1.png" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../img/index/image-principale-1.png">
 
-  <link rel="manifest" href="site.webmanifest">
+  <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-<header>
-  <nav>
-    <h1><a href="/">Aniss D.exe</a> </h1>
-    <ul>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Navigation principale">
+    <a href="/" class="logo">Aniss D.exe</a>
+    <ul class="nav-links">
       <li><a href="/">Accueil</a></li>
-      <li><a href="#">À propos</a></li>
-      <li><a href="../Projets/">Projets</a></li>
-      <li><a href="../blog/">blog</a></li>
-      <li><a href="#">Sport</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="../Politique%20de%20confidentialité/">Politique de confidentialitée</a></li>
+      <li><a href="/#about">À propos</a></li>
+      <li><a href="/Projets/">Projets</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/recette/">Recettes</a></li>
+      <li><a href="/sport/">Sport</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
     </ul>
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h2>Bienvenue sur mon site les tocards👋</h2>
-    <p>zebi</p>
-    <a href="../Projets/" class="btn">Découvrir mes projets</a>
-  </div>
-  <img src="img/index/presentation_ia.png" alt="Photo de présentation" class="hero-img">
+<main>
+  <section class="hero" aria-labelledby="projects-hero-title">
+    <div class="hero-content">
+      <p class="hero-kicker">Mes réalisations</p>
+      <h1 id="projects-hero-title">Une sélection de projets techniques et créatifs</h1>
+      <p class="hero-text">Découvrez les applications web, expérimentations IA et outils open-source sur lesquels j'ai
+        travaillé. Chaque projet est accompagné de son contexte et des technologies utilisées.</p>
+      <div class="hero-actions">
+        <a href="/#about" class="btn btn-secondary">En savoir plus sur ma démarche</a>
+        <a href="/contact/" class="btn">Proposer une collaboration</a>
+      </div>
+    </div>
+    <img src="../img/index/presentation_ia.png" alt="Illustration de projets numériques" class="hero-img">
+  </section>
 
-</section>
+  <section class="about">
+    <h2>Catalogue en construction</h2>
+    <p>Je suis en train de regrouper mes projets par thématique (web, data, IA, automations...). Revenez bientôt pour
+      découvrir des études de cas détaillées avec code source et retours d'expérience.</p>
+  </section>
+</main>
 
-<section class="about">
-  <h2>À propos</h2>
-  <p>Ce site est mon espace personnel où je partage mes projets, mes idées et mes apprentissages en développement web et logiciels.   </p>
-</section>
-<script src="js/app.js"></script>
+<script src="../js/app.js"></script>
 
-<footer>
-  <p>© 2025 Aniss Dah. Tous droits réservés. —
-    <a href="./" class="footer-link">Politique de confidentialité</a>
+<footer class="site-footer">
+  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
+  <nav aria-label="Navigation secondaire">
+    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
+    <a href="/contact/" class="footer-link">Contact</a>
+  </nav>
 </footer>
 
 </body>

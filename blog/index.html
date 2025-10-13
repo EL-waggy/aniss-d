@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog</title>
+  <title>Blog - Aniss D.exe</title>
   <link rel="stylesheet" href="../css/style.css">
-  <meta name="description" content="">
+  <meta name="description" content="Le blog d'Aniss Dah : tutoriels, veille technologique et retours d'expérience.">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -18,46 +18,57 @@
   <link rel="icon" href="../img/index/image-principale-1.png" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../img/index/image-principale-1.png">
 
-  <link rel="manifest" href="site.webmanifest">
+  <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-<header>
-  <nav>
-    <h1><a href="/">Aniss D.exe</a> </h1>
-    <ul>
-      <li><a href="./">Accueil</a></li>
-      <li><a href="#">À propos</a></li>
-      <li><a href="../Projets/">Projets</a></li>
-      <li><a href="../blog/">blog</a></li>
-      <li><a href="#">Sport</a></li>
-      <li><a href="#">Contacts</a></li>
-      <li><a href="../Politique%20de%20confidentialité/">Politique de confidentialitée</a></li>
+<header class="site-header">
+  <nav class="site-nav" aria-label="Navigation principale">
+    <a href="/" class="logo">Aniss D.exe</a>
+    <ul class="nav-links">
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/#about">À propos</a></li>
+      <li><a href="/Projets/">Projets</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/recette/">Recettes</a></li>
+      <li><a href="/sport/">Sport</a></li>
+      <li><a href="/contact/">Contact</a></li>
+      <li><a href="/Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
     </ul>
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h2>Bienvenue sur mon site les tocards👋</h2>
-    <p>zebi</p>
-    <a href="../blog/" class="btn">ici il y aura divers article ecrit probablement par chatgpt</a>
-  </div>
-  <img src="img/index/presentation_ia.png" alt="Photo de présentation" class="hero-img">
+<main>
+  <section class="hero" aria-labelledby="blog-hero-title">
+    <div class="hero-content">
+      <p class="hero-kicker">Veille & retours d'expérience</p>
+      <h1 id="blog-hero-title">Le blog : partager, documenter, progresser</h1>
+      <p class="hero-text">Tutoriels, notes d'expériences et réflexions sur le développement web, l'IA et les outils qui me
+        passionnent. Une façon de garder une trace et d'aider celles et ceux qui suivent le même chemin.</p>
+      <div class="hero-actions">
+        <a href="/contact/" class="btn btn-secondary">Proposer un sujet</a>
+        <a href="/" class="btn">Retourner à l'accueil</a>
+      </div>
+    </div>
+    <img src="../img/index/presentation_ia.png" alt="Illustration d'articles de blog" class="hero-img">
+  </section>
 
-</section>
+  <section class="about">
+    <h2>Articles en préparation</h2>
+    <p>Les premiers billets arrivent bientôt : résumés de conférences, scripts utiles, retours sur des outils en vogue et
+      veille sur l'IA générative. N'hésite pas à me suivre pour être informé des nouveautés.</p>
+  </section>
+</main>
 
-<section class="about">
-  <h2>À propos</h2>
-  <p>Ce site est mon espace personnel où je partage mes projets, mes idées et mes apprentissages en développement web et logiciels.   </p>
-</section>
-<script src="js/app.js"></script>
+<script src="../js/app.js"></script>
 
-<footer>
-  <p>© 2025 Aniss Dah. Tous droits réservés. —
-    <a href="./" class="footer-link">Politique de confidentialité</a>
-  </p>
+<footer class="site-footer">
+  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
+  <nav aria-label="Navigation secondaire">
+    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
+    <a href="/contact/" class="footer-link">Contact</a>
+  </nav>
 </footer>
 
 </body>
