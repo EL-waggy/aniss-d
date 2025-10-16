@@ -1,5 +1,7 @@
 # aniss-d
-site web bac a sable ou je testerais quelque trucs
+site web bac a sable ou je testerais quelque trucs en HTML, CSS, JS et autres technos web
+
+# L'adresse du site web est: **https://aniss-d.ovg**
 ### 1ere etape de ce projet
 - [x] creer un repo github
 - [x] creer un fichier yml pour connecter le repo a l'action github  avec un workflow pour deployer le site web
