@@ -1,0 +1,6 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# /recette ou /recettes -> /recette/recette.html
+RewriteRule ^recette(s)?$ recette/recette.html [L]
