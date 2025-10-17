@@ -1,51 +1,41 @@
 <?php
 /**
- * index.php (recette) — contrôleur unique
- * ------------------------------------------------------------
- * - Barrette de navigation "catégories" fonctionnelle
- * - Liste la catégorie cliquée (ex: /recette/dessert/)
- * - Lien vers chaque page recette (HTML/PHP) dans la catégorie
- * - Redirige automatiquement si l’URL pointe déjà sur une recette
+ * index.php (recette) — barre unique de navigation recettes avec "déroulé"
+ * ----------------------------------------------------------------------------------
+ * - On garde la nav principale du site telle quelle (NE PAS TOUCHER).
+ * - Une seule barre "recettes" affiche les catégories sous forme de puces.
+ * - En cliquant sur une catégorie, un panneau déroulant affiche les recettes (HTML/PHP)
+ *   de ce sous-dossier avec des liens cliquables vers chaque fichier.
+ * - Le reste de la page peut afficher "toutes les catégories" ou une grille, mais ce
+ *   n'est plus obligatoire pour le flux principal.
  *
- * PRÉREQUIS .htaccess (extraits) :
- *   # Router tout ce qui commence par /recette vers ce fichier
+ * .htaccess à conserver :
+ *   RewriteEngine On
  *   RewriteRule ^recette(?:/.*)?$ /recette/index.php [L,QSA]
- *
- * NOTE : on NE "inclut" pas les fichiers HTML de recette dans ce template,
- *        on y fait simplement des liens. Si vous voulez server-side render,
- *        il faudra passer vos recettes en fragments (partials).
  */
 
-// ---------- CONFIG (chemins sûrs OVH) ----------
-$SITE_BASE       = '/';         // racine du site (où il y a /css, /img, etc.)
-$RECETTE_WEBROOT = '/recette';  // URL racine des recettes
-$RECETTE_FSROOT  = __DIR__;     // chemin disque du dossier /recette
+// ---------- CONFIG ----------
+$SITE_BASE       = '/';
+$RECETTE_WEBROOT = '/recette';
+$RECETTE_FSROOT  = __DIR__;
 
 // ---------- HELPERS ----------
-
-/**
- * Retourne les catégories présentes comme sous-dossiers de /recette.
- */
 function listRecipeCategories(string $fsRoot): array {
   if (!is_dir($fsRoot)) return [];
   $cats = [];
   foreach (glob($fsRoot . '/*', GLOB_ONLYDIR) as $dir) {
     $slug = basename($dir);
-    if ($slug === '' || $slug[0] === '_' || $slug === 'assets') continue; // ignore techniques
-    // Compte recettes .html et .php dans la catégorie
+    if ($slug === '' || $slug[0] === '_' || $slug === 'assets') continue;
     $count = count(glob($dir . '/*.html')) + count(glob($dir . '/*.php'));
     $label = ucfirst(str_replace(['-', '_'], ' ', $slug));
-    $cats[] = ['slug'=>$slug, 'label'=>$label, 'count'=>$count];
+    $cats[] = ['slug'=>$slug,'label'=>$label,'count'=>$count];
   }
   usort($cats, fn($a,$b)=> strcmp($a['label'], $b['label']));
   return $cats;
 }
 
-/**
- * Liste les recettes d'une catégorie (fichiers .html et .php)
- */
 function listRecipesInCategory(string $fsRoot, string $cat): array {
-  $dir = rtrim($fsRoot, '/').'/'.$cat;
+  $dir = rtrim($fsRoot,'/').'/'.$cat;
   if (!is_dir($dir)) return [];
   $items = [];
   foreach (['html','php'] as $ext) {
@@ -53,26 +43,19 @@ function listRecipesInCategory(string $fsRoot, string $cat): array {
       $base = basename($file);
       $slug = pathinfo($base, PATHINFO_FILENAME);
       $label = ucfirst(str_replace(['-', '_'], ' ', $slug));
-      $items[$slug] = [
-        'slug'  => $slug,
-        'label' => $label,
-        'ext'   => $ext,
+      $items[] = [
+        'slug'=>$slug,
+        'label'=>$label,
+        'ext'=>$ext,
+        'url'=> '/recette/'.rawurlencode($cat).'/'.rawurlencode($slug).'.'.$ext
       ];
     }
   }
-  // valeurs uniques par slug
-  ksort($items);
-  // transforme en tableau indexé + ajoute l'URL web
-  return array_values(array_map(function($it) use ($cat){
-    $it['url'] = '/recette/'.rawurlencode($cat).'/'.rawurlencode($it['slug']).'.'.$it['ext'];
-    return $it;
-  }, $items));
+  usort($items, fn($a,$b)=> strcmp($a['label'],$b['label']));
+  return $items;
 }
 
-/**
- * Catégorie active déduite de l'URL (ex: /recette/dessert/ -> dessert)
- */
-function getActiveCategory(string $webroot): string {
+function getActiveCategoryFromUrl(string $webroot): string {
   $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '', '/');
   $segments = $path === '' ? [] : explode('/', $path);
   $root = trim($webroot, '/');
@@ -80,65 +63,18 @@ function getActiveCategory(string $webroot): string {
   return ($i !== false && isset($segments[$i+1]) && $segments[$i+1] !== '') ? $segments[$i+1] : '';
 }
 
-/**
- * Si l’URL est de forme /recette/{cat}/{slug}, on redirige vers le fichier réel
- * (recette HTML/PHP) pour l’afficher tel quel (pages autonomes).
- */
-function maybeRedirectToRecipeFile(string $fsRoot, string $webroot): void {
-  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '', '/');
-  $segments = $path === '' ? [] : explode('/', $path);
-  $root = trim($webroot, '/');
-  $i = array_search($root, $segments, true);
-  if ($i === false) return;
-
-  // /recette/{cat}/{slug}
-  if (isset($segments[$i+1], $segments[$i+2]) && $segments[$i+1] !== '' && $segments[$i+2] !== '') {
-    $cat = $segments[$i+1];
-    $slug = $segments[$i+2];
-    $dir = rtrim($fsRoot,'/').'/'.$cat;
-    foreach (['html','php'] as $ext) {
-      $f = $dir.'/'.$slug.'.'.$ext;
-      if (is_file($f)) {
-        $target = $webroot.'/'.rawurlencode($cat).'/'.rawurlencode($slug).'.'.$ext;
-        header('Location: '.$target, true, 302);
-        exit;
-      }
-    }
-    // sinon: laisser l'affichage 404 custom plus bas
-  }
-}
-
-/**
- * Fil d’Ariane basique
- */
-function renderBreadcrumb(string $webroot, string $pageTitle = ''): string {
-  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '', '/');
-  $segments = $path === '' ? [] : explode('/', $path);
-  $root = trim($webroot, '/');
-  $out = [];
-  $out[] = '<a href="/">Accueil</a>';
-  $out[] = '<a href="'.htmlspecialchars($webroot).'/">Recettes</a>';
-  $i = array_search($root, $segments, true);
-  if ($i !== false && isset($segments[$i+1]) && $segments[$i+1] !== '') {
-    $catSlug  = $segments[$i+1];
-    $catLabel = ucfirst(str_replace(['-', '_'], ' ', $catSlug));
-    $out[] = '<a href="'.htmlspecialchars($webroot).'/'.rawurlencode($catSlug).'/">'.htmlspecialchars($catLabel).'</a>';
-  }
-  if ($pageTitle) $out[] = htmlspecialchars($pageTitle);
-  return implode(' / ', $out);
-}
-
 // ---------- DATA ----------
 $categories = listRecipeCategories($RECETTE_FSROOT);
-$activeCat  = getActiveCategory($RECETTE_WEBROOT);
+// Pré-charger les recettes par catégorie pour le panneau déroulant
+$recipesByCat = [];
+foreach ($categories as $c) {
+  $recipesByCat[$c['slug']] = listRecipesInCategory($RECETTE_FSROOT, $c['slug']);
+}
+$activeCat = getActiveCategoryFromUrl($RECETTE_WEBROOT);
 
-// Si l'URL vise déjà une recette précise, on redirige vers le fichier réel
-maybeRedirectToRecipeFile($RECETTE_FSROOT, $RECETTE_WEBROOT);
-
-// ---------- PAGE METADATA ----------
-$pageTitle = $activeCat ? 'Catégorie : '.ucfirst(str_replace(['-','_'],' ', $activeCat)) : 'Toutes les catégories';
-$pageDescription = "Recettes du site Aniss D.exe";
-
+// ---------- PAGE META ----------
+$pageTitle = 'Recettes';
+$pageDescription = "Navigation des recettes par catégories avec panneau déroulant.";
 ?>
 <!doctype html>
 <html lang="fr">
@@ -150,27 +86,31 @@ $pageDescription = "Recettes du site Aniss D.exe";
   <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.css">
   <link rel="icon" href="<?= $SITE_BASE ?>img/index/image-principale-1.png" sizes="any">
   <style>
-    /* Styles minimum de la sous-nav si le CSS global n'est pas chargé */
-    .subnav-recette{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #eee}
-    .subnav-recette .subnav-inner{display:grid;grid-template-columns:auto 1fr auto auto;gap:.5rem;align-items:center;padding:.5rem 1rem;max-width:1200px;margin:0 auto}
-    .subnav-recette .subnav-scroll{display:flex;gap:.5rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.25rem 0}
-    .subnav-recette .chip{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border:1px solid #e5e7eb;border-radius:999px;background:#fafafa;font-size:.95rem;line-height:1;text-decoration:none;color:#111}
-    .subnav-recette .chip[aria-selected="true"]{background:#111;color:#fff;border-color:#111}
-    .subnav-recette .chip .count{opacity:.6;font-variant-numeric:tabular-nums}
-    .subnav-recette .subnav-tools{display:flex;gap:.5rem;align-items:center}
-    .subnav-recette input[type="search"],.subnav-recette select{padding:.4rem .6rem;border:1px solid #e5e7eb;border-radius:.5rem;font-size:.95rem}
-    .subnav-recette .subnav-arrow{border:1px solid #e5e7eb;background:#fff;border-radius:.5rem;padding:.35rem .55rem;cursor:pointer}
+    /* Barre recettes (une seule barre) + panneau */
+    .recette-bar{position:sticky;top:0;z-index:60;background:linear-gradient(135deg, rgba(255,255,255,.98), rgba(248,250,252,.98));border-bottom:1px solid #e5e7eb;backdrop-filter:saturate(140%) blur(6px)}
+    .recette-bar .inner{display:grid;grid-template-columns:auto 1fr auto;gap:.5rem;align-items:center;max-width:1200px;margin:0 auto;padding:.5rem 1rem}
+    .recette-bar .chips{display:flex;gap:.5rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.25rem 0}
+    .recette-bar .chip{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border:1px solid #e5e7eb;border-radius:999px;background:#fff;font-size:.95rem;line-height:1;text-decoration:none;color:#111;user-select:none}
+    .recette-bar .chip[aria-expanded="true"]{background:#111;color:#fff;border-color:#111}
+    .recette-bar .count{opacity:.6;font-variant-numeric:tabular-nums}
+    .recette-bar .tools{display:flex;gap:.5rem;align-items:center}
+    .recette-bar input[type="search"], .recette-bar select{padding:.4rem .6rem;border:1px solid #e5e7eb;border-radius:.5rem;font-size:.95rem}
+    .recette-bar .arrow{border:1px solid #e5e7eb;background:#fff;border-radius:.5rem;padding:.35rem .55rem;cursor:pointer}
+
+    /* Panneau déroulant (one-at-a-time) */
+    .recipes-panel{position:relative}
+    .recipes-panel .panel{position:absolute;left:0;right:0;top:0;transform:translateY(0);background:#0b1220;color:#c9d1d9;border-bottom:1px solid #233046;box-shadow:0 24px 60px rgba(5,10,20,.45);display:none}
+    .recipes-panel .panel[aria-hidden="false"]{display:block}
+    .panel-inner{max-width:1200px;margin:0 auto;padding:14px 16px 18px}
+    .panel-title{margin:4px 0 10px;color:#79c0ff;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+    .panel-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr))}
+    .panel-item a{display:block;padding:10px 12px;border:1px solid #233046;border-radius:10px;background:#111827;color:#e5e7eb;text-decoration:none}
+    .panel-item a:hover{border-color:#3b82f6}
+
     @media (max-width:780px){
-      .subnav-recette .subnav-inner{grid-template-columns:auto 1fr auto}
-      .subnav-recette .subnav-tools{grid-column:1 / -1}
+      .recette-bar .inner{grid-template-columns:auto 1fr}
+      .recette-bar .tools{grid-column:1 / -1}
     }
-    .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:1rem auto;max-width:1100px;padding:0 1rem}
-    .card{background:#161b22;border:1px solid #2d333b;border-radius:14px;padding:16px;color:#c9d1d9}
-    .card a{color:#79c0ff;text-decoration:none}
-    .card a:hover{text-decoration:underline}
-    .empty{max-width:1100px;margin:1rem auto;padding:0 1rem;color:#6b7280}
-    .breadcrumb{max-width:1200px;margin:.5rem auto 0;padding:0 1rem;font-size:.9rem;color:#6b7280}
-    .breadcrumb a{color:inherit;text-decoration:underline;text-underline-offset:2px}
   </style>
 </head>
 <body>
@@ -192,26 +132,25 @@ $pageDescription = "Recettes du site Aniss D.exe";
   </nav>
 </header>
 
-<!-- Sous-navigation Recettes -->
-<nav class="subnav-recette" aria-label="Navigation des catégories de recettes">
-  <div class="subnav-inner">
-    <button class="subnav-arrow left" aria-label="Défiler vers la gauche" hidden>◀</button>
-
-    <div class="subnav-scroll" role="tablist" aria-label="Catégories">
-      <?php foreach ($categories as $c): ?>
-        <a class="chip" role="tab"
-           aria-selected="<?= $c['slug'] === $activeCat ? 'true' : 'false' ?>"
-           href="<?= $RECETTE_WEBROOT . '/' . rawurlencode($c['slug']) . '/' ?>">
-          <?= htmlspecialchars($c['label']) ?>
+<!-- Barre UNIQUE des recettes avec panneau déroulant -->
+<div class="recette-bar" role="navigation" aria-label="Recettes">
+  <div class="inner">
+    <button class="arrow left" aria-label="Défiler vers la gauche" hidden>◀</button>
+    <div class="chips" role="tablist" aria-label="Catégories">
+      <?php foreach ($categories as $c): $slug=$c['slug']; $label=$c['label']; ?>
+        <button class="chip" role="tab"
+                aria-expanded="<?= $slug === $activeCat ? 'true' : 'false' ?>"
+                data-cat="<?= htmlspecialchars($slug) ?>"
+                aria-controls="panel-<?= htmlspecialchars($slug) ?>">
+          <?= htmlspecialchars($label) ?>
           <span class="count"><?= $c['count'] ?: '' ?></span>
-        </a>
+        </button>
       <?php endforeach; ?>
       <?php if (empty($categories)): ?>
         <span>Aucune catégorie trouvée dans <code><?= htmlspecialchars($RECETTE_WEBROOT) ?></code></span>
       <?php endif; ?>
     </div>
-
-    <div class="subnav-tools">
+    <div class="tools">
       <input type="search" id="search-recette" placeholder="Rechercher une recette…" aria-label="Rechercher une recette">
       <select id="filter-difficulte" aria-label="Filtrer par difficulté">
         <option value="">Difficulté</option>
@@ -219,50 +158,43 @@ $pageDescription = "Recettes du site Aniss D.exe";
         <option value="moyenne">Moyenne</option>
         <option value="difficile">Difficile</option>
       </select>
-      <button class="subnav-arrow right" aria-label="Défiler vers la droite">▶</button>
+      <button class="arrow right" aria-label="Défiler vers la droite">▶</button>
     </div>
   </div>
-</nav>
 
-<p class="breadcrumb" aria-label="Fil d’Ariane"><?= renderBreadcrumb($RECETTE_WEBROOT, $activeCat ? '' : ''); ?></p>
+  <!-- Panneau déroulant (one-at-a-time), rendu server-side -->
+  <div class="recipes-panel" id="recipes-panel">
+    <?php foreach ($categories as $c): $slug=$c['slug']; $label=$c['label']; $items=$recipesByCat[$slug] ?? []; ?>
+      <div class="panel" id="panel-<?= htmlspecialchars($slug) ?>" aria-hidden="<?= $slug === $activeCat ? 'false' : 'true' ?>">
+        <div class="panel-inner">
+          <div class="panel-title"><?= htmlspecialchars($label) ?></div>
+          <div class="panel-grid">
+            <?php foreach ($items as $r): ?>
+              <div class="panel-item"><a href="<?= htmlspecialchars($r['url']) ?>"><?= htmlspecialchars($r['label']) ?></a></div>
+            <?php endforeach; ?>
+            <?php if (empty($items)): ?>
+              <p>Aucune recette trouvée dans <code>/recette/<?= htmlspecialchars($slug) ?></code>.</p>
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</div>
 
 <main>
-  <?php if (!$activeCat): ?>
-    <!-- VUE : page Recettes (toutes les catégories) -->
-    <section class="about" aria-labelledby="title-allcats">
-      <h2 id="title-allcats">Toutes les catégories</h2>
-      <div class="grid" role="list">
-        <?php foreach ($categories as $c): ?>
-          <article class="card" role="listitem">
-            <h3><a href="<?= $RECETTE_WEBROOT . '/' . rawurlencode($c['slug']) . '/' ?>">
-                <?= htmlspecialchars($c['label']) ?></a></h3>
-            <p><?= $c['count'] ?> recette(s)</p>
-          </article>
-        <?php endforeach; ?>
-      </div>
-      <?php if (empty($categories)): ?>
-        <p class="empty">Ajoutez des sous-dossiers (ex: <code>/recette/dessert</code>) contenant des fichiers <code>.html</code> ou <code>.php</code>.</p>
-      <?php endif; ?>
-    </section>
-
-  <?php else: ?>
-    <!-- VUE : page Catégorie -->
-    <?php $recipes = listRecipesInCategory($RECETTE_FSROOT, $activeCat); ?>
-    <section class="about" aria-labelledby="title-cat">
-      <h2 id="title-cat">Catégorie : <?= htmlspecialchars(ucfirst(str_replace(['-','_'],' ', $activeCat))) ?></h2>
-      <div class="grid" role="list">
-        <?php foreach ($recipes as $r): ?>
-          <article class="card" role="listitem">
-            <h3><a href="<?= htmlspecialchars($r['url']) ?>"><?= htmlspecialchars($r['label']) ?></a></h3>
-            <p><?= strtoupper($r['ext']) ?> · <code><?= htmlspecialchars($r['slug']) ?></code></p>
-          </article>
-        <?php endforeach; ?>
-      </div>
-      <?php if (empty($recipes)): ?>
-        <p class="empty">Aucune recette trouvée dans <code>/recette/<?= htmlspecialchars($activeCat) ?></code>. Déposez vos fichiers <code>.html</code> ou <code>.php</code> dans ce dossier.</p>
-      <?php endif; ?>
-    </section>
-  <?php endif; ?>
+  <!-- Contenu libre (facultatif), on peut garder un aperçu -->
+  <section class="about" aria-labelledby="title-allcats">
+    <h2 id="title-allcats">Toutes les catégories</h2>
+    <div class="grid" role="list">
+      <?php foreach ($categories as $c): ?>
+        <article class="card" role="listitem">
+          <h3><?= htmlspecialchars($c['label']) ?></h3>
+          <p><?= $c['count'] ?> recette(s)</p>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -272,24 +204,24 @@ $pageDescription = "Recettes du site Aniss D.exe";
 </footer>
 
 <script>
-  // Accessibilité & confort pour la sous-nav
   (() => {
-    const scroll = document.querySelector('.subnav-scroll');
-    const leftBtn = document.querySelector('.subnav-arrow.left');
-    const rightBtn = document.querySelector('.subnav-arrow.right');
-    const chips = document.querySelectorAll('.subnav-scroll .chip');
+    // Défilement horizontal des chips
+    const scroll = document.querySelector('.chips');
+    const leftBtn = document.querySelector('.arrow.left');
+    const rightBtn = document.querySelector('.arrow.right');
 
-    if (scroll && leftBtn && rightBtn) {
-      const toggleArrows = () => {
-        leftBtn.hidden = scroll.scrollLeft < 10;
-        rightBtn.hidden = scroll.scrollWidth - scroll.clientWidth - scroll.scrollLeft < 10;
-      };
+    const toggleArrows = () => {
+      if (!scroll) return;
+      leftBtn.hidden = scroll.scrollLeft < 10;
+      rightBtn.hidden = (scroll.scrollWidth - scroll.clientWidth - scroll.scrollLeft) < 10;
+    };
+    if (scroll) {
       toggleArrows();
       scroll.addEventListener('scroll', toggleArrows);
-      leftBtn.addEventListener('click',()=> scroll.scrollBy({left: -240, behavior:'smooth'}));
-      rightBtn.addEventListener('click',()=> scroll.scrollBy({left: 240, behavior:'smooth'}));
+      leftBtn?.addEventListener('click', ()=> scroll.scrollBy({left:-240, behavior:'smooth'}));
+      rightBtn?.addEventListener('click',()=> scroll.scrollBy({left: 240, behavior:'smooth'}));
 
-      // drag-to-scroll pour desktop
+      // drag-to-scroll
       let dragging=false, startX=0, startLeft=0, id=0;
       scroll.addEventListener('pointerdown', e=>{ dragging=true; startX=e.clientX; startLeft=scroll.scrollLeft; id=e.pointerId; scroll.setPointerCapture(id); });
       scroll.addEventListener('pointermove', e=>{ if(!dragging) return; scroll.scrollLeft = startLeft - (e.clientX - startX); });
@@ -297,13 +229,43 @@ $pageDescription = "Recettes du site Aniss D.exe";
       scroll.addEventListener('pointercancel',()=>{ dragging=false; });
     }
 
-    // Recherche clavier (Enter) -> page /recette/recherche/ (prévue plus tard)
+    // Panneau déroulant logic
+    const chips = document.querySelectorAll('.chip[role="tab"]');
+    const panels = document.querySelectorAll('.recipes-panel .panel');
+    const closeAll = () => {
+      chips.forEach(c => c.setAttribute('aria-expanded','false'));
+      panels.forEach(p => p.setAttribute('aria-hidden','true'));
+    };
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const cat = chip.dataset.cat;
+        const panel = document.getElementById('panel-'+cat);
+        const isOpen = chip.getAttribute('aria-expanded') === 'true';
+        closeAll();
+        if (!isOpen && panel) {
+          chip.setAttribute('aria-expanded','true');
+          panel.setAttribute('aria-hidden','false');
+        }
+      });
+    });
+    // Fermer si clic en dehors du panneau / de la barre
+    document.addEventListener('click', (e) => {
+      const bar = document.querySelector('.recette-bar');
+      if (!bar?.contains(e.target)) closeAll();
+    });
+    // Esc pour fermer
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape') closeAll();
+    });
+
+    // Recherche (optionnelle)
     const search = document.getElementById('search-recette');
     const selectDiff = document.getElementById('filter-difficulte');
     search?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && search.value.trim()) {
         const q = encodeURIComponent(search.value.trim());
         const d = selectDiff?.value ? '&d='+encodeURIComponent(selectDiff.value) : '';
+        // Page de recherche à implémenter si besoin
         location.href = '<?= $RECETTE_WEBROOT ?>/recherche/?q='+q+d;
       }
     });
