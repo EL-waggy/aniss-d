@@ -147,7 +147,7 @@ $pageDescription = "Recettes du site Aniss D.exe";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recettes - Aniss D.exe</title>
   <meta name="description" content="<?= htmlspecialchars($pageDescription) ?>">
-  <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.cleaned.css">
+  <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.css">
   <link rel="icon" href="<?= $SITE_BASE ?>img/index/image-principale-1.png" sizes="any">
   <style>
     /* Styles minimum de la sous-nav si le CSS global n'est pas chargé */
