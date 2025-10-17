@@ -1,7 +1,8 @@
 <?php
-// ---------- CONFIG ----------
-$RECETTE_WEBROOT = '/recette'; // Chemin web vers la racine des recettes
-$RECETTE_FSROOT  = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . $RECETTE_WEBROOT;
+// ---------- CONFIG (chemins sûrs OVH) ----------
+$SITE_BASE         = '/';           // dossier racine du site (là où il y a /css, /img, etc.)
+$RECETTE_WEBROOT   = '/recette';    // URL du dossier recettes
+$RECETTE_FSROOT    = __DIR__;       // chemin disque du dossier /recette (fiable)
 
 // ---------- HELPERS ----------
 function listRecipeCategories(string $fsRoot): array {
@@ -9,42 +10,34 @@ function listRecipeCategories(string $fsRoot): array {
   $cats = [];
   foreach (glob($fsRoot . '/*', GLOB_ONLYDIR) as $dir) {
     $slug = basename($dir);
-    if ($slug[0] === '_' || $slug === 'assets') continue; // ignore dossiers techniques
-    // Compte basique des fichiers .html / .php dans la catégorie
-    $count = 0;
-    $count += count(glob($dir . '/*.html'));
-    $count += count(glob($dir . '/*.php'));
-    // Label lisible
-    $label = ucfirst(str_replace(['-', '_'], [' ', ' '], $slug));
+    if ($slug === '' || $slug[0] === '_' || $slug === 'assets') continue;
+    $count  = count(glob($dir . '/*.html')) + count(glob($dir . '/*.php'));
+    $label  = ucfirst(str_replace(['-', '_'], ' ', $slug));
     $cats[] = ['slug' => $slug, 'label' => $label, 'count' => $count];
   }
   usort($cats, fn($a,$b) => strcmp($a['label'], $b['label']));
   return $cats;
 }
 
-/** Retourne slug de catégorie active depuis l’URL */
 function getActiveCategory(string $webroot): string {
-  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-  $segments = explode('/', $path);
-  // Ex: /recette/pates/spaghetti/ -> 'pates'
+  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '', '/');
+  $segments = $path === '' ? [] : explode('/', $path);
   $root = trim($webroot, '/');
   $i = array_search($root, $segments, true);
-  if ($i === false) return '';
-  return $segments[$i + 1] ?? '';
+  return ($i !== false && isset($segments[$i+1])) ? $segments[$i+1] : '';
 }
 
-/** Breadcrumb simple: Accueil / Recettes / Catégorie / (Titre) */
 function renderBreadcrumb(string $webroot, string $pageTitle = ''): string {
-  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
-  $segments = explode('/', $path);
+  $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '', '/');
+  $segments = $path === '' ? [] : explode('/', $path);
   $root = trim($webroot, '/');
   $out = [];
   $out[] = '<a href="/">Accueil</a>';
   $out[] = '<a href="' . htmlspecialchars($webroot) . '/">Recettes</a>';
   $i = array_search($root, $segments, true);
   if ($i !== false && isset($segments[$i+1]) && $segments[$i+1] !== '') {
-    $catSlug = $segments[$i+1];
-    $catLabel = ucfirst(str_replace(['-', '_'], [' ', ' '], $catSlug));
+    $catSlug  = $segments[$i+1];
+    $catLabel = ucfirst(str_replace(['-', '_'], ' ', $catSlug));
     $out[] = '<a href="' . htmlspecialchars($webroot) . '/' . rawurlencode($catSlug) . '/">' . htmlspecialchars($catLabel) . '</a>';
   }
   if ($pageTitle) $out[] = htmlspecialchars($pageTitle);
@@ -66,10 +59,10 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recette - Aniss D.exe</title>
   <meta name="description" content="<?= htmlspecialchars($pageDescription) ?>">
-  <link rel="stylesheet" href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/css/style.css">
-  <link rel="icon" href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/img/index/image-principale-1.png" sizes="any">
+  <!-- chemins ABSOLUS sûrs -->
+  <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.css">
+  <link rel="icon" href="<?= $SITE_BASE ?>img/index/image-principale-1.png" sizes="any">
   <style>
-    /* --- Styles sous-nav (peu intrusifs, tu peux déplacer en CSS global) --- */
     .subnav-recette { position: sticky; top: 0; z-index: 50; background:#fff; border-bottom:1px solid #eee; }
     .subnav-recette .subnav-inner { display:grid; grid-template-columns:auto 1fr auto auto; gap:.5rem; align-items:center; padding:.5rem 1rem; max-width:1200px; margin:0 auto; }
     .subnav-recette .subnav-scroll { display:flex; gap:.5rem; overflow-x:auto; scroll-snap-type:x proximity; padding:.25rem 0; }
@@ -79,33 +72,29 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
     .subnav-recette .subnav-tools { display:flex; gap:.5rem; align-items:center; }
     .subnav-recette input[type="search"], .subnav-recette select { padding:.4rem .6rem; border:1px solid #e5e7eb; border-radius:.5rem; font-size:.95rem; }
     .subnav-recette .subnav-arrow { border:1px solid #e5e7eb; background:#fff; border-radius:.5rem; padding:.35rem .55rem; cursor:pointer; }
-    @media (max-width: 780px) {
-      .subnav-recette .subnav-inner { grid-template-columns:auto 1fr auto; }
-      .subnav-recette .subnav-tools { grid-column: 1 / -1; }
-    }
-    .breadcrumb { max-width:1200px; margin: .5rem auto 0; padding:0 1rem; font-size:.9rem; color:#6b7280; }
+    @media (max-width:780px){ .subnav-recette .subnav-inner{grid-template-columns:auto 1fr auto} .subnav-recette .subnav-tools{grid-column:1 / -1} }
+    .breadcrumb { max-width:1200px; margin:.5rem auto 0; padding:0 1rem; font-size:.9rem; color:#6b7280; }
     .breadcrumb a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
   </style>
 </head>
 <body>
 <header class="site-header">
   <nav class="site-nav" aria-label="Navigation principale">
-    <a href="/" class="logo">Aniss D.exe</a>
+    <a href="<?= $SITE_BASE ?>" class="logo">Aniss D.exe</a>
     <ul class="nav-links">
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/">Accueil</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/CV/">Mon CV</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/about/">À propos</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/Projets/">Projets</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/blog/">Blog</a></li>
-      <li><a href="<?= htmlspecialchars($RECETTE_WEBROOT) ?>/">Recettes</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/sport/">Sport</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/contact/">Contact</a></li>
-      <li><a href="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
+      <li><a href="<?= $SITE_BASE ?>">Accueil</a></li>
+      <li><a href="<?= $SITE_BASE ?>CV/">Mon CV</a></li>
+      <li><a href="<?= $SITE_BASE ?>about/">À propos</a></li>
+      <li><a href="<?= $SITE_BASE ?>Projets/">Projets</a></li>
+      <li><a href="<?= $SITE_BASE ?>blog/">Blog</a></li>
+      <li><a href="<?= $RECETTE_WEBROOT ?>/">Recettes</a></li>
+      <li><a href="<?= $SITE_BASE ?>sport/">Sport</a></li>
+      <li><a href="<?= $SITE_BASE ?>contact/">Contact</a></li>
+      <li><a href="<?= $SITE_BASE ?>Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
     </ul>
   </nav>
 </header>
 
-<!-- Sous-nav Recettes -->
 <nav class="subnav-recette" aria-label="Navigation des catégories de recettes">
   <div class="subnav-inner">
     <button class="subnav-arrow left" aria-label="Défiler vers la gauche" hidden>◀</button>
@@ -114,7 +103,7 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
       <?php foreach ($categories as $c): ?>
         <a class="chip" role="tab"
            aria-selected="<?= $c['slug'] === $activeCat ? 'true' : 'false' ?>"
-           href="<?= htmlspecialchars($RECETTE_WEBROOT) . '/' . rawurlencode($c['slug']) . '/' ?>">
+           href="<?= $RECETTE_WEBROOT . '/' . rawurlencode($c['slug']) . '/' ?>">
           <?= htmlspecialchars($c['label']) ?>
           <span class="count"><?= $c['count'] ?: '' ?></span>
         </a>
@@ -140,11 +129,10 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
 
 <p class="breadcrumb"><?= renderBreadcrumb($RECETTE_WEBROOT, $pageTitle) ?></p>
 
-<!-- Contenu principal -->
 <main>
   <article class="recette">
     <h2><?= htmlspecialchars($pageTitle) ?></h2>
-    <img src="<?= htmlspecialchars(dirname($RECETTE_WEBROOT)) ?>/img/recette/pate_carbo.png"
+    <img src="<?= $SITE_BASE ?>img/recette/pate_carbo.png"
          alt="Assiette de spaghetti à la carbonara"
          class="recette-img" width="300" height="300">
 
@@ -176,21 +164,20 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
     </section>
   </article>
 
-  <!-- Contenu complémentaire -->
   <aside class="infos-recette">
     <h3>Informations</h3>
     <ul>
-      <li><strong>Temps de préparation :</strong> 15 min</li>
-      <li><strong>Temps de cuisson :</strong> 10 min</li>
+      <li><strong>Préparation :</strong> 15 min</li>
+      <li><strong>Cuisson :</strong> 10 min</li>
       <li><strong>Difficulté :</strong> Facile</li>
       <li><strong>Catégorie :</strong> Plat principal</li>
     </ul>
 
     <h3>Autres recettes</h3>
     <ul>
-      <li><a href="<?= htmlspecialchars($RECETTE_WEBROOT) ?>/desserts/tiramisu.html">Tiramisu italien</a></li>
-      <li><a href="<?= htmlspecialchars($RECETTE_WEBROOT) ?>/salades/salade-cesar.html">Salade César</a></li>
-      <li><a href="<?= htmlspecialchars($RECETTE_WEBROOT) ?>/oeufs/omelette.html">Omelette moelleuse</a></li>
+      <li><a href="<?= $RECETTE_WEBROOT ?>/dessert/tiramisu.html">Tiramisu italien</a></li>
+      <li><a href="<?= $RECETTE_WEBROOT ?>/salade/salade-cesar.html">Salade César</a></li>
+      <li><a href="<?= $RECETTE_WEBROOT ?>/omelette/omelette.html">Omelette moelleuse</a></li>
     </ul>
   </aside>
 </main>
@@ -198,12 +185,11 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
 <footer class="site-footer">
   <p>© <?= date('Y') ?> Aniss Dah. Tous droits réservés.</p>
   <nav aria-label="Navigation secondaire">
-    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
-    <a href="/contact/" class="footer-link">Contact</a>
+    <a href="<?= $SITE_BASE ?>Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
+    <a href="<?= $SITE_BASE ?>contact/" class="footer-link">Contact</a>
   </nav>
 </footer>
 
-<!-- JS pour flèches & drag scroll -->
 <script>
   (function(){
     const root = document.querySelector('.subnav-recette');
@@ -212,33 +198,30 @@ $pageDescription = "Recette de cuisine par Aniss D.exe";
     const leftBtn = root.querySelector('.subnav-arrow.left');
     const rightBtn = root.querySelector('.subnav-arrow.right');
 
-    function updateArrows() {
-      if (!scroll) return;
+    function updateArrows(){
       const maxScroll = scroll.scrollWidth - scroll.clientWidth;
-      leftBtn.hidden = scroll.scrollLeft <= 4;
+      leftBtn.hidden  = scroll.scrollLeft <= 4;
       rightBtn.hidden = scroll.scrollLeft >= maxScroll - 4;
     }
-    if (scroll) {
+    if (scroll){
       updateArrows();
       scroll.addEventListener('scroll', updateArrows, {passive:true});
-      leftBtn.addEventListener('click', () => scroll.scrollBy({left: -240, behavior: 'smooth'}));
-      rightBtn.addEventListener('click', () => scroll.scrollBy({left: 240, behavior: 'smooth'}));
-      // Drag-to-scroll
+      leftBtn.addEventListener('click', ()=> scroll.scrollBy({left:-240, behavior:'smooth'}));
+      rightBtn.addEventListener('click',()=> scroll.scrollBy({left: 240, behavior:'smooth'}));
       let dragging=false, startX=0, startLeft=0, id=0;
-      scroll.addEventListener('pointerdown', (e)=>{ dragging=true; startX=e.clientX; startLeft=scroll.scrollLeft; id=e.pointerId; scroll.setPointerCapture(id); });
-      scroll.addEventListener('pointermove', (e)=>{ if(!dragging) return; scroll.scrollLeft = startLeft - (e.clientX - startX); });
-      scroll.addEventListener('pointerup', ()=>{ dragging=false; });
-      scroll.addEventListener('pointercancel', ()=>{ dragging=false; });
+      scroll.addEventListener('pointerdown', e=>{ dragging=true; startX=e.clientX; startLeft=scroll.scrollLeft; id=e.pointerId; scroll.setPointerCapture(id); });
+      scroll.addEventListener('pointermove', e=>{ if(!dragging) return; scroll.scrollLeft = startLeft - (e.clientX - startX); });
+      scroll.addEventListener('pointerup',   ()=>{ dragging=false; });
+      scroll.addEventListener('pointercancel',()=>{ dragging=false; });
     }
 
-    // (Optionnel) mini recherche -> redirection vers /recette/recherche/
     const search = document.getElementById('search-recette');
     const selectDiff = document.getElementById('filter-difficulte');
     search?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && search.value.trim()) {
         const q = encodeURIComponent(search.value.trim());
         const d = selectDiff?.value ? '&d='+encodeURIComponent(selectDiff.value) : '';
-        location.href = '<?= htmlspecialchars($RECETTE_WEBROOT) ?>/recherche/?q='+q+d;
+        location.href = '<?= $RECETTE_WEBROOT ?>/recherche/?q='+q+d;
       }
     });
   })();
