@@ -3,18 +3,32 @@ Options -MultiViews
 RewriteEngine On
 RewriteBase /
 
-# Laisse passer les vrais fichiers (CSS, JS, images…)
+# Laisse passer les vrais fichiers (CSS, JS, images, PHP réels, etc.)
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+
+# -----------------------------------------
+# Gestion automatique des pages "propres"
+# -----------------------------------------
 
 # /chemin -> /chemin/index.html
 RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
 RewriteRule ^(.+?)/?$ $1/index.html [L]
 
+# /chemin -> /chemin/index.php
+RewriteCond %{DOCUMENT_ROOT}/$1/index.php -f
+RewriteRule ^(.+?)/?$ $1/index.php [L]
+
 # /chemin -> /chemin.html (fallback)
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
-# Sinon affiche la 404
+# /chemin -> /chemin.php (dernier fallback avant 404)
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+# -----------------------------------------
+# Sinon -> page d’erreur personnalisée
+# -----------------------------------------
 RewriteRule . /404.html [L]
