@@ -1,3 +1,4 @@
+<!-- Footer -->
 <footer class="site-footer">
 
   <p>© 2025 Aniss Dah. Tous droits réservés.</p>
@@ -7,3 +8,4 @@
   </nav>
 
 </footer>
+<!-- End Footer -->
