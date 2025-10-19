@@ -26,7 +26,7 @@
 <body>
   <header class="site-header">
 
-    <?php include "partial/navbar.php"; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
   </header>
 
 
@@ -117,15 +117,7 @@
 
 <script src="js/app.js"></script>
 
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
 
-<footer class="site-footer">
-
-  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
-  <nav aria-label="Navigation secondaire">
-    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
-    <a href="/contact/" class="footer-link">Contact</a>
-  </nav>
-
-</footer>
 </body>
 </html>
