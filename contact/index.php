@@ -10,7 +10,7 @@
 </head>
 <body>
 <header class="site-header">
-  <?php include "/partial/navbar.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
 </header>
 <main>
   <section class="page-intro">
