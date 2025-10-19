@@ -26,7 +26,7 @@
 <body>
   <header class="site-header">
 
-    <?php include "/partial/navbar"; ?>
+    <?php include "partial/navbar.php"; ?>
   </header>
 
 
