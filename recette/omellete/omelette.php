@@ -9,9 +9,9 @@
   <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
 </head>
 <body>
-<header class="site-header">
+  <!-- header navbar -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-</header>
+  <!-- end header navbar -->
 
 <main>
   <section class="page-intro">
@@ -24,12 +24,8 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
-  <nav aria-label="Navigation secondaire">
-    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
-    <a href="/contact/" class="footer-link">Contact</a>
-  </nav>
-</footer>
+<!-- Footer -->
+<?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+<!-- End Footer -->
 </body>
 </html>

@@ -102,8 +102,10 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
 </head>
 <body>
 
-<header class="site-header">
-  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+<!-- header navbar -->
+<?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+<!-- end header navbar -->
+
   <!--
   <nav class="site-nav" aria-label="Navigation principale">
     <a href="<?= $SITE_BASE ?>" class="logo">Aniss D.exe</a>
@@ -120,7 +122,7 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
     </ul>
   </nav>
   -->
-</header>
+
 
 <!-- Barre unique des recettes -->
 <div class="recette-bar" role="navigation" aria-label="Recettes">
@@ -175,11 +177,9 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="site-footer-content">
-    <p>&copy; <?= date('Y') ?> Aniss D.exe · <a href="<?= $SITE_BASE ?>contact/" class="footer-link">Contact</a></p>
-  </div>
-</footer>
+  <!-- Footer -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+  <!-- End Footer -->
 
 </body>
 </html>

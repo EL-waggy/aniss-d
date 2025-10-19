@@ -24,9 +24,10 @@
 
 <body>
 
-  <header class="site-header">
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-  </header>
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
+
 
   <main>
     <section class="hero">
@@ -53,12 +54,9 @@
 
   <script src="../js/app.js"></script>
 
-  <footer class="site-footer">
-    <div class="site-footer-content">
-      <p>© 2025 Aniss Dah. Tous droits réservés.</p>
-      <a href="/Politique%20de%20confidentialité/" class="footer-link">Politique de confidentialité</a>
-    </div>
-  </footer>
+  <!-- Footer -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+  <!-- End Footer -->
 
 
 </body>

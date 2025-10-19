@@ -10,24 +10,10 @@
 </head>
 
 <body>
-  <header class="site-header">
-    <nav class="site-nav" aria-label="Navigation principale">
-      <a href="/" class="logo">Aniss D.exe</a>
-      <ul class="nav-links">
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
 
-        <li><a href="../">Accueil</a></li>
-        <li><a href="../CV/">Mon CV</a></li>
-        <li><a href="../about/">À propos</a></li>
-        <li><a href="../Projets/">Projets</a></li>
-        <li><a href="../blog/">Blog</a></li>
-        <li><a href="../recette/">Recettes</a></li>
-        <li><a href="../sport/">Sport</a></li>
-        <li><a href="../contact/" aria-current="page">Contact</a></li>
-        <li><a href="../Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
-
-      </ul>
-    </nav>
-  </header>
 
 <main class="confidentialite-container">
   <article class="confidentialite-content">
@@ -70,14 +56,8 @@
 </main>
 
 
-<footer class="site-footer">
-
-  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
-  <nav aria-label="Navigation secondaire">
-    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
-    <a href="/contact/" class="footer-link">Contact</a>
-  </nav>
-
-</footer>
+  <!-- Footer -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+  <!-- End Footer -->
 </body>
 </html>

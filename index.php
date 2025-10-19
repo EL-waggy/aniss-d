@@ -24,10 +24,10 @@
 </head>
 
 <body>
-  <header class="site-header">
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
 
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-  </header>
 
 
 <main>

@@ -9,9 +9,10 @@
   <meta name="description" content="Programmes sportifs et suivi d'entraînement par Aniss.">
 </head>
 <body>
-  <header class="site-header">
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-  </header>
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
+
 <main>
   <section class="page-intro">
     <p class="hero-kicker">Routine & bien-être</p>
@@ -67,12 +68,8 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <p>© 2025 Aniss Dah. Tous droits réservés.</p>
-  <nav aria-label="Navigation secondaire">
-    <a href="/Politique%20de%20confidentialit%C3%A9/" class="footer-link">Politique de confidentialité</a>
-    <a href="/contact/" class="footer-link">Contact</a>
-  </nav>
-</footer>
+    <!-- Footer -->
+    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+    <!-- End Footer -->
 </body>
 </html>

@@ -22,9 +22,10 @@
 </head>
 <section>
 
-  <header class="site-header">
+    <!-- header navbar -->
     <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-  </header>
+    <!-- end header navbar -->
+
 </section>
 <section>
   <h1>MasterchefLab</h1>
@@ -33,6 +34,8 @@
   <p>Merci de votre visite</p>
 </section>
 <body>
-
+<!-- Footer -->
+<?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+<!-- End Footer -->
 </body>
 </html>
