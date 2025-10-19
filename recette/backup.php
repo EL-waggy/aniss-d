@@ -4,38 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recette - Aniss D.exe</title>
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="icon" href="../../img/index/image-principale-1.png" sizes="any">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
   <meta name="description" content="Recette de cuisine par Aniss D.exe">
 </head>
 
 <body>
 <header class="site-header">
-  <nav class="site-nav" aria-label="Navigation principale">
-    <a href="/" class="logo">Aniss D.exe</a>
-    <ul class="nav-links">
-
-      <li><a href="../..">Accueil</a></li>
-      <li><a href="../../CV">Mon CV</a></li>
-      <li><a href="../../about">À propos</a></li>
-      <li><a href="../../Projets">Projets</a></li>
-      <li><a href="../../blog">Blog</a></li>
-      <li><a href="..">Recettes</a></li>
-      <li><a href="../../sport">Sport</a></li>
-      <li><a href="../../contact" aria-current="page">Contact</a></li>
-      <li><a href="../../Politique%20de%20confidentialité">Politique de confidentialité</a></li>
-
-
-    </ul>
-  </nav>
+  <?php include "partial/navbar.php"; ?>
 </header>
 
 <!-- Contenu principal -->
 <main>
+
+
   <article class="recette">
-    <h2>Redirection reussi!</h2>
     <h2>🍝 Spaghetti à la Carbonara</h2>
-    <img src="../../img/recette/pate_carbo.png" alt="Assiette de spaghetti à la carbonara" class="recette-img" width="300" height="300">
+    <img src="../img/recette/pate_carbo.png" alt="Assiette de spaghetti à la carbonara" class="recette-img" width="300" height="300">
 
     <section class="introduction">
       <p>Une recette simple, rapide et délicieuse pour les amateurs de pâtes italiennes !</p>
@@ -82,9 +67,6 @@
       <li><a href="omelette.html">Omelette moelleuse</a></li>
     </ul>
   </aside>
-  <section class="content-section">
-    <a class="btn" href="../">↩ Retour aux recettes</a>
-  </section>
 </main>
 
 <footer class="site-footer">
