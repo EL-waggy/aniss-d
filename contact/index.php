@@ -30,8 +30,8 @@
       </ul>
       <div class="tag-list" aria-label="Compétences principales">
         <span>⚙️ Full-stack</span>
-        <span>🧠 IA</span>
-        <span>🎨 UI</span>
+
+        <span>♨️ java</span>
         <span>  lifestyle</span>
       </div>
     </article>

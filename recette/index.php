@@ -103,7 +103,7 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
 <body>
 
 <header class="site-header">
-  <?php include "/partial/navbar.php"; ?>
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
   <!--
   <nav class="site-nav" aria-label="Navigation principale">
     <a href="<?= $SITE_BASE ?>" class="logo">Aniss D.exe</a>
