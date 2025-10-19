@@ -41,7 +41,7 @@
       <div class="hero-content">
         <h2>Mon projet de site de recettes</h2>
         <p>Un aperçu DU site qui est en cours de devloppement</p>
-        <a href="/Projets/recette/site_de_recette.html" class="btn">Explorer le site</a>
+        <a href="/Projets/recette/site_de_recette.php" class="btn">Explorer le site</a>
       </div>
       <img src="/img/index/presentation_ia.png" alt="Illustration futuriste de présentation" class="hero-img">
     </section>

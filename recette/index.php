@@ -103,6 +103,8 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
 <body>
 
 <header class="site-header">
+  <?php include "/partial/navbar.php"; ?>
+  <!--
   <nav class="site-nav" aria-label="Navigation principale">
     <a href="<?= $SITE_BASE ?>" class="logo">Aniss D.exe</a>
     <ul class="nav-links">
@@ -117,6 +119,7 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
       <li><a href="<?= $SITE_BASE ?>Politique%20de%20confidentialit%C3%A9/">Politique de confidentialité</a></li>
     </ul>
   </nav>
+  -->
 </header>
 
 <!-- Barre unique des recettes -->
