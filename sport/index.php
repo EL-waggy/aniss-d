@@ -68,8 +68,8 @@
   </section>
 </main>
 
-    <!-- Footer -->
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
-    <!-- End Footer -->
+  <!-- Footer -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
+  <!-- End Footer -->
 </body>
 </html>

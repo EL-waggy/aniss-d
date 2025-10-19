@@ -116,8 +116,8 @@
 </main>
 
 <script src="js/app.js"></script>
-
+  <!-- Footer -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
-
+  <!-- End Footer -->
 </body>
 </html>
