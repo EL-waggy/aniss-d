@@ -36,7 +36,7 @@
 <section>
   <!-- listes des recettes que je sais faire -->
   <ul>
-    <li><a href="/Omelette">Recette de l'omellettte du chef</a> </li>
+    <li><a href="/recette/omellete">Recette de l'omellettte du chef</a> </li>
     <li><a href="/fritte">La fritte belge</a></li>
     <li><a href="/crepe">recettes de crepes</a></li>
   </ul>
