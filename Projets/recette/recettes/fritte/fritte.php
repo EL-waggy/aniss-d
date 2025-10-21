@@ -22,9 +22,9 @@
 </head>
 <section>
 
-    <!-- header navbar -->
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-    <!-- end header navbar -->
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
 
 </section>
 <section>
@@ -42,7 +42,7 @@
   </ul>
 </section>
 <section>
-<p> cette section est en cours de reflexion de mise en page merci de patienter</p>
+  <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
 </section>
 <body>
 <!-- Footer -->
