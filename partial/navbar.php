@@ -1,7 +1,7 @@
 
 <header class="site-header">
     <nav class="site-nav" aria-label="Navigation principale">
-      <a href="../" class="logo">Aniss D.exe</a>
+      <a href="/" class="logo">Aniss D.exe</a>
       <ul class="nav-links">
 
         <li><a href="/">Accueil</a></li>
