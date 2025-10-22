@@ -22,9 +22,11 @@
 </head>
 <section>
 
-  <!-- header navbar -->
 
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
   <!-- end header navbar -->
+
 
 </section>
 <section>
