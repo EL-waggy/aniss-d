@@ -1,3 +1,6 @@
+<?php
+include __DIR__ . '/partial/bootstrap.php';
+?>
 
 <!doctype html>
 <html class="no-js" lang="fr">
@@ -15,11 +18,12 @@
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
 
-  <link rel="icon" href="/img/index/icon_lofi_style.ico" sizes="any">
-  <link rel="icon" href="/img/index/icon_lofi_style.ico" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/img/index/icon_lofi_style.ico">
+  <link rel="icon" href="<?= BASE_URL ?>/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/icon.svg">
+  <link rel="apple-touch-icon" href="<?= BASE_URL ?>/icon.png">
+  <link rel="manifest" href="<?= BASE_URL ?>/site.webmanifest">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
 
-  <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
 
