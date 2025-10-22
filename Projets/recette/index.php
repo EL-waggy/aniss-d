@@ -2,6 +2,7 @@
 
 include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
