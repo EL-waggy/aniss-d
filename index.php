@@ -1,6 +1,4 @@
-<?php
-include __DIR__ . '/partial/bootstrap.php';
-?>
+<?php include BASE_PATH . '/partial/navbar.php'; ?>
 
 <!doctype html>
 <html class="no-js" lang="fr">

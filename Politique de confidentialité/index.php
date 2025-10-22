@@ -20,7 +20,8 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 
 <body>
   <!-- header navbar -->
-  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/partial/navbar.php';?>
   <!-- end header navbar -->
 
 
