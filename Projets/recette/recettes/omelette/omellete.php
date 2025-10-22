@@ -15,7 +15,7 @@
 
   <link rel="icon" href="/img/index/image-principale-1.png" sizes="any">
   <link rel="icon" href="/img/index/image-principale-1.png" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/img/index/image-principale-1.png">
+  <link rel="apple-touch-icon" href="/img/index/icon_lofi_style.ico">
 
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">

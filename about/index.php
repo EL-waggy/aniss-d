@@ -14,8 +14,10 @@
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
 
-  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
-  <link rel="apple-touch-icon" href="../img/index/image-principale-1.png">
+  <link rel="icon" href="/img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" href="/img/index/icon_lofi_style.ico" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/index/icon_lofi_style.ico">
+
   <link rel="manifest" href="../site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>

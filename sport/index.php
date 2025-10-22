@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sport - Aniss D.exe</title>
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
+  <link rel="icon" href="../img/index/icon_lofi_style.ico" sizes="any">
   <meta name="description" content="Programmes sportifs et suivi d'entraînement par Aniss.">
 </head>
 <body>

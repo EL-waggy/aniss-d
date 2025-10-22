@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mon CV - Aniss D.exe</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/img/index/icon_lofi_style.ico" sizes="any">
   <meta name="description" content="Curriculum Vitae futuriste d'Aniss Dahaoui : compétences, expériences et projets tech.">
 </head>
 
@@ -100,7 +100,7 @@
       </div>
     </section>
   </main>
-  
+
   <!-- Footer -->
   <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
   <!-- End Footer -->

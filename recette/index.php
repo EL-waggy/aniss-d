@@ -69,36 +69,10 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recettes - Aniss D.exe</title>
   <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.css">
-  <style>
-    .recette-bar{position:sticky;top:0;z-index:60;background:linear-gradient(135deg, rgba(255,255,255,.98), rgba(248,250,252,.98));border-bottom:1px solid #e5e7eb}
-    .recette-bar .inner{display:grid;grid-template-columns:auto 1fr auto;gap:.5rem;align-items:center;max-width:1200px;margin:0 auto;padding:.5rem 1rem}
-    .chips{display:flex;gap:.5rem;overflow-x:auto;scroll-snap-type:x proximity;padding:.25rem 0}
-    .chip{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .85rem;border:1px solid #e5e7eb;border-radius:999px;background:#fff;font-size:.95rem;line-height:1;text-decoration:none;color:#111}
-    .chip[aria-current="true"]{background:#111;color:#fff;border-color:#111}
-    .count{opacity:.6;font-variant-numeric:tabular-nums}
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="../img/index/icon_lofi_style.ico" sizes="any">
+  <meta name="description" content="Recette de la recette">
 
-    .recipes-panel{position:relative}
-    .panel{position:absolute;left:0;right:0;top:0;background:#0b1220;color:#c9d1d9;border-bottom:1px solid #233046;box-shadow:0 24px 60px rgba(5,10,20,.45);display:none;z-index:65}
-    .panel.open{display:block}             /* ouvert côté serveur */
-    .panel:target{display:block}           /* ouvert via hash */
-    .panel-inner{max-width:1200px;margin:0 auto;padding:14px 16px 18px}
-    .panel-title{margin:4px 0 10px;color:#79c0ff;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-    .panel-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr))}
-    .panel-item a{display:block;padding:10px 12px;border:1px solid #233046;border-radius:10px;background:#111827;color:#e5e7eb;text-decoration:none}
-    .panel-item a:hover{border-color:#3b82f6}
-
-    .close-bar{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
-    .close-link{font-size:.9rem;color:#9ca3af;text-decoration:none}
-    .close-link:hover{text-decoration:underline}
-
-    @media (max-width:780px){
-      .recette-bar .inner{grid-template-columns:auto 1fr}
-    }
-    .grid{display:grid;gap:6px;grid-template-columns:repeat(auto-fit, minmax(220px,1fr));max-width:1100px;margin:1rem auto;padding:0 1rem}
-    .card{background:#161b22;border:1px solid #2d333b;border-radius:14px;padding:10px;color:#c9d1d9}
-    .card a{color:#79c0ff;text-decoration:none}
-    .card a:hover{text-decoration:underline}
-  </style>
 </head>
 <body>
 
@@ -139,7 +113,7 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
         <span>Aucune catégorie trouvée</span>
       <?php endif; ?>
     </div>
-    <div></div>
+
   </div>
 
   <!-- Panneaux (un seul visible via :target ou .open) -->

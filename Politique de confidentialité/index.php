@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialité - Aniss D.exe</title>
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
+  <link rel="icon" href="../img/index/icon_lofi_style.ico" sizes="any">
   <meta name="description" content="Politique de confidentialité du site Aniss D.exe : aucune collecte de données personnelles ni de cookies de suivi.">
 </head>
 
