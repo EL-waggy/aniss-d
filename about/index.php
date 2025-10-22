@@ -1,3 +1,8 @@
+<?php
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
+?>
+
 <!doctype html>
 <html class="no-js" lang="fr">
 

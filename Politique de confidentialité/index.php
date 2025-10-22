@@ -1,11 +1,20 @@
+<?php
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialité - Aniss D.exe</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" href="../img/index/icon_lofi_style.ico" sizes="any">
+
+  <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="manifest" href="<?= BASE_URL ?>/site.webmanifest">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
   <meta name="description" content="Politique de confidentialité du site Aniss D.exe : aucune collecte de données personnelles ni de cookies de suivi.">
 </head>
 

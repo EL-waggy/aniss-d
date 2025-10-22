@@ -68,9 +68,13 @@ $activeCat = getActiveCategory($RECETTE_WEBROOT);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Recettes - Aniss D.exe</title>
-  <link rel="stylesheet" href="<?= $SITE_BASE ?>css/style.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="icon" href="../img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="manifest" href="<?= BASE_URL ?>/site.webmanifest">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+
+  <meta name="theme-color" content="#fafafa">
   <meta name="description" content="Recette de la recette">
 
 </head>

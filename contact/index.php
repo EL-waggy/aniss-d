@@ -1,3 +1,8 @@
+<?php
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -10,11 +15,12 @@
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
 
-  <link rel="icon" href="/img/index/icon_lofi_style.ico" sizes="any">
-  <link rel="icon" href="/img/index/icon_lofi_style.ico" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/img/index/icon_lofi_style.ico">
 
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="manifest" href="<?= BASE_URL ?>/site.webmanifest">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
   <meta name="theme-color" content="#fafafa">
 
 

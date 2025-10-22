@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projets - Aniss D.exe</title>
-  <link rel="stylesheet" href="/css/style.css">
+
   <meta name="description" content="Découvrez les projets web, IA et outils réalisés par Aniss Dah.">
 
   <meta property="og:title" content="">

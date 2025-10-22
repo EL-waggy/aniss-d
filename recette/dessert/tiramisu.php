@@ -1,3 +1,8 @@
+<?php
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -5,8 +10,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tiramisu italien - Aniss D.exe</title>
   <meta name="description" content="Recette de tiramisu maison en cours de rédaction par Aniss Dah.">
-  <link rel="stylesheet" href="../../css/style.css">
-  <link rel="icon" href="../img/index/image-principale-1.png" sizes="any">
+
+
+  <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
+  <link rel="manifest" href="<?= BASE_URL ?>/site.webmanifest">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/style.css">
+
+  <meta name="theme-color" content="#fafafa">
 </head>
 <body>
   <!-- header navbar -->
