@@ -30,28 +30,39 @@
 
 
   <main>
-    <section class="hero">
-      <div class="hero-content">
-        <h2> Mes projets en cours de boot</h2>
-        <p>Un aperçu des missions tech que je développe : applications web, outils d'automatisation et expériences interactives inspirées de l'univers gaming.</p>
-        <a href="/Projets/" class="btn">Explorer les projets</a>
-      </div>
-      <img src="/img/index/presentation_ia.png" alt="Illustration futuriste de présentation" class="hero-img">
-    </section>
-    <section class="hero">
-      <div class="hero-content">
-        <h2>Mon projet de site de recettes</h2>
-        <p>Un aperçu DU site qui est en cours de devloppement</p>
-        <a href="/Projets/recette/site_de_recette.php" class="btn">Explorer le site</a>
-      </div>
-      <img src="/img/index/presentation_ia.png" alt="Illustration futuriste de présentation" class="hero-img">
-    </section>
-    <section class="about">
-      <h2>À propos des projets</h2>
-      <p>Chaque projet est pensé comme un niveau à franchir : cahier des charges, design UI/UX, développement et déploiement. Reste connecté, des nouveautés arrivent très vite.</p>
-    </section>
-  </main>
+    <article>
+      <section class="hero">
+        <div class="hero-content">
+          <h2> Mes projets en cours de boot</h2>
+          <p>Un aperçu des missions tech que je développe : applications web, outils d'automatisation et expériences interactives inspirées de l'univers gaming.</p>
+          <a href="/Projets/" class="btn">Explorer les projets</a>
+        </div>
+        <img src="/img/index/presentation_ia.png" alt="Illustration futuriste de présentation" class="hero-img">
+      </section>
+    </article>
 
+    <article>
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Mon projet de site de recettes</h2>
+          <p>Un aperçu DU site qui est en cours de devloppement</p>
+          <a href="/Projets/recette/" class="btn">Explorer le site</a>
+        </div>
+        <img src="/img/recette.png" alt="Illustration futuriste de présentation" class="hero-img">
+
+      </section>
+    </article>
+
+
+
+    <article>
+      <section class="about">
+        <h2>À propos des projets</h2>
+        <p>Chaque projet est pensé comme un niveau à franchir : cahier des charges, design UI/UX, développement et déploiement. Reste connecté, des nouveautés arrivent très vite.</p>
+      </section>
+    </article>
+
+  </main>
   <script src="../js/app.js"></script>
 
   <!-- Footer -->
