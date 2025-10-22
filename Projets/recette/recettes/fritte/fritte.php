@@ -20,6 +20,7 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
+<body>
 <section>
 
   <!-- header navbar -->
@@ -29,7 +30,7 @@
 </section>
 
 <section>
-  <h1><a href="/Projets/recette">Master Chef</a></h1>
+  <h1><a href="/Projets/recette/">Master Chef</a></h1>
   <h2>Petite presentation</h2>
   <p>Ce site de recette a pour vocation de vous proposer un large pannelle de recette avec des alternative vegan,sans gluten, halal etc. des que cela est possible</p>
   <p>Merci de votre visite</p>
@@ -48,7 +49,7 @@
 <section>
   <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
 </section>
-<body>
+
 <!-- Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
 <!-- End Footer -->

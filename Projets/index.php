@@ -32,7 +32,7 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h2>Mes projets en cours de boot</h2>
+        <h2> Mes projets en cours de boot</h2>
         <p>Un aperçu des missions tech que je développe : applications web, outils d'automatisation et expériences interactives inspirées de l'univers gaming.</p>
         <a href="/Projets/" class="btn">Explorer les projets</a>
       </div>

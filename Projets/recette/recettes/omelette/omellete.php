@@ -20,6 +20,8 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#fafafa">
 </head>
+
+<body>
 <section>
 
 
@@ -29,24 +31,42 @@
 
 
 </section>
-<section>
-  <h1><a href="/Projets/recette">Master Chef</a></h1>
-  <h2>Petite presentation</h2>
-  <p>Ce site de recette a pour vocation de vous proposer un large pannelle de recette avec des alternative vegan,sans gluten, halal etc. des que cela est possible</p>
-  <p>Merci de votre visite</p>
-</section>
-<section>
-  <!-- listes des recettes que je sais faire -->
-  <ul>
-    <li><a href="/Projets/recette/recettes/omelette/omellete.php">Recette de l'omellettte du chef</a> </li>
-    <li><a href="/Projets/recette/recettes/fritte/fritte.php">La fritte belge</a></li>
-    <li><a href="/Projets/recette/recettes/crepes/crepes.php">recettes de crepes</a></li>
-  </ul>
-</section>
-<section>
-  <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
-</section>
-<body>
+<article>
+  <section>
+    <h1><a href="/Projets/recette/">Master Chef</a></h1>
+    <h2>Petite presentation</h2>
+    <p>Ce site de recette a pour vocation de vous proposer un large pannelle de recette avec des alternative vegan,sans gluten, halal etc. des que cela est possible</p>
+    <p>Merci de votre visite</p>
+  </section>
+</article>
+
+<article>
+  <section>
+    <!-- listes des recettes que je sais faire -->
+    <ul>
+      <li><a href="/Projets/recette/recettes/omelette/omellete.php">Recette de l'omellettte du chef</a> </li>
+      <li><a href="/Projets/recette/recettes/fritte/fritte.php">La fritte belge</a></li>
+      <li><a href="/Projets/recette/recettes/crepes/crepes.php">recettes de crepes</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article>
+  <section>
+    <h2><b> Liste des ingredients</b></h2>
+      <ul>
+        <p>Pour 1 personne: </p>
+        <li>3 œufs frais</li>
+        <li>1 cuillère à soupe de lait ou de crème pour plus de moelleux (facultatif)</li>
+        <li>10 g de beurre</li>
+        <li>Sel et poivre</li>
+        <li>Quelques brins de ciboulette ciselée (facultatif)</li>
+      </ul>
+
+  </section>
+</article>
+
 <!-- Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
 <!-- End Footer -->
