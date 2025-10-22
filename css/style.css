@@ -78,12 +78,35 @@ a:hover, a:focus{ color:#5eead4; text-shadow:0 0 12px rgba(94,234,212,.6); }
   max-width:1200px; margin:0 auto; padding:1.2rem 2rem;
   display:flex; align-items:center; justify-content:space-between; gap:2rem;
 }
-.logo{
-  font-family:'Chakra Petch','Space Grotesk',sans-serif;
-  font-size:1.8rem; font-weight:700; letter-spacing:.08em;
-  color:#fff; text-transform:uppercase; display:inline-flex; align-items:center; gap:.6rem;
+/* ---- LOGO ET NAVBAR ---- */
+
+/*
+   La classe .logo gère le conteneur du logo et du texte "Aniss D.exe"
+   On utilise flexbox pour les aligner sur une seule ligne,
+   et on ajoute un petit espacement entre les deux éléments.
+*/
+
+/* Conteneur du logo (icône + texte) */
+.logo {
+  display: inline-flex;          /* ⬅ inline-flex = garde la taille du contenu seulement */
+  align-items: center;           /* centre verticalement texte + icône */
+  gap: 8px;                      /* espace entre icône et texte */
+  text-decoration: none;         /* pas de soulignement */
+  color: white;                  /* couleur du texte */
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;               /* curseur main sur le lien */
 }
-.logo::before{ content:'⚡'; font-size:1.3rem; color:var(--color-accent); text-shadow:0 0 10px rgba(34,211,238,.7); }
+
+/* Icône du logo */
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  max-width: none;
+}
+
+
 
 .nav-links{ display:flex; align-items:center; flex-wrap:wrap; gap:1rem 1.4rem; list-style:none; margin:0; padding:0; }
 .nav-links a{
