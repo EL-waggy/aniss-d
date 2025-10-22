@@ -16,6 +16,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
   <meta property="og:image:alt" content="">
 
 
+
   <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
   <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">

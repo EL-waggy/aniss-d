@@ -10,7 +10,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog - Aniss D.exe</title>
-
+  <link rel="stylesheet" href="../css/style.css">
   <meta name="description" content="Le blog d'Aniss Dah : tutoriels, veille technologique et retours d'expérience.">
 
   <meta property="og:title" content="blog">

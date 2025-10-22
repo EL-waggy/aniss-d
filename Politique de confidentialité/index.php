@@ -9,7 +9,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Politique de confidentialité - Aniss D.exe</title>
-
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
   <link rel="apple-touch-icon" href="<?= BASE_URL ?>/img/index/icon_lofi_style.ico">
