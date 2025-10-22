@@ -44,7 +44,7 @@
         <a href="/contact/" class="btn btn-secondary">Discuter ensemble</a>
       </div>
     </div>
-    <img src="img/index/presentation_ia.png" alt="Illustration d'intelligence artificielle" class="hero-img">
+    <img src="img/index/presentation_ia.png" alt="Illustration de ma tete" class="hero-img">
   </section>
 
   <section class="status-banner" aria-live="polite">
