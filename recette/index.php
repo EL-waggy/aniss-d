@@ -13,6 +13,10 @@ $SITE_BASE       = '/';
 $RECETTE_WEBROOT = '/recette';
 $RECETTE_FSROOT  = __DIR__;
 
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
+
+
 // ---------- HELPERS ----------
 function listRecipeCategories(string $fsRoot): array {
   if (!is_dir($fsRoot)) return [];
@@ -62,7 +66,10 @@ foreach ($categories as $c) $recipesByCat[$c['slug']] = listRecipesInCategory($R
 $activeCat = getActiveCategory($RECETTE_WEBROOT);
 
 // ---------- PAGE ----------
-?><!doctype html>
+
+?>
+
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
