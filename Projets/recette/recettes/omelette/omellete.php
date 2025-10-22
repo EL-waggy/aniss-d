@@ -30,7 +30,7 @@
 
 </section>
 <section>
-  <h1><a href="/Projets/">Master Chef</a></h1>
+  <h1><a href="/Projets/recette">Master Chef</a></h1>
   <h2>Petite presentation</h2>
   <p>Ce site de recette a pour vocation de vous proposer un large pannelle de recette avec des alternative vegan,sans gluten, halal etc. des que cela est possible</p>
   <p>Merci de votre visite</p>

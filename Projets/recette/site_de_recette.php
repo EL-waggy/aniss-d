@@ -27,12 +27,16 @@
     <!-- end header navbar -->
 
 </section>
+
+
 <section>
   <h1>MasterchefLab</h1>
   <h2>Petite presentation</h2>
   <p>Ce site de recette a pour vocation de vous proposer un large pannelle de recette avec des alternative vegan,sans gluten, halal etc. des que cela est possible</p>
   <p>Merci de votre visite</p>
 </section>
+
+
 <section>
   <!-- listes des recettes que je sais faire -->
   <ul>
