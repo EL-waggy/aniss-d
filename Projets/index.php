@@ -1,6 +1,8 @@
 <?php
-include __DIR__ . '/partial/bootstrap.php';
+
+include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 ?>
+
 <!doctype html>
 <html class="no-js" lang="fr">
 
@@ -28,7 +30,9 @@ include __DIR__ . '/partial/bootstrap.php';
 <body>
 
   <!-- header navbar -->
-  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/partial/navbar.php'; ?>
+
   <!-- end header navbar -->
 
 
