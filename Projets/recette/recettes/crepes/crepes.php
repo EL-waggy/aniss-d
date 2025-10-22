@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MasterchefLab</title>
   <link rel="stylesheet" href="/css/style.css">
-  <meta name="description" content="Portfolio et blog d'Aniss Dah : développement web et expérimentations numériques.">
+  <meta name="description" content="Portfolio du projet de site de recette de cuisine">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -22,9 +22,9 @@
 </head>
 <section>
 
-    <!-- header navbar -->
-    <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
-    <!-- end header navbar -->
+  <!-- header navbar -->
+  <?php include $_SERVER['DOCUMENT_ROOT']."/partial/navbar.php"; ?>
+  <!-- end header navbar -->
 
 </section>
 <section>
@@ -36,13 +36,13 @@
 <section>
   <!-- listes des recettes que je sais faire -->
   <ul>
-    <li><a href="/Projets/recette/recettes/omelette/omellete.php">Recette de l'omellettte du chef</a> </li>
+    <li><a href="/Projets/recette/recettes/omellete.php">Recette de l'omellettte du chef</a> </li>
     <li><a href="/Projets/recette/recettes/fritte/fritte.php">La fritte belge</a></li>
     <li><a href="/Projets/recette/recettes/crepes/crepes.php">recettes de crepes</a></li>
   </ul>
 </section>
 <section>
-<p> cette section est en cours de reflexion de mise en page merci de patienter</p>
+  <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
 </section>
 <body>
 <!-- Footer -->
