@@ -9,7 +9,7 @@
       <li><a href="<?= BASE_URL ?>/">Accueil</a></li>
       <li><a href="<?= BASE_URL ?>/CV/">Mon CV</a></li>
       <li><a href="<?= BASE_URL ?>/about/">À propos</a></li>
-      <li><a href="<?= BASE_URL ?>/Projets/">Projets</a></li>
+      <li><a href="<?= BASE_URL ?>/Projets/index.php">Projets</a></li>
       <li><a href="<?= BASE_URL ?>/blog/">Blog</a></li>
       <li><a href="<?= BASE_URL ?>/recette/">Recettes</a></li>
       <li><a href="<?= BASE_URL ?>/sport/">Sport</a></li>
