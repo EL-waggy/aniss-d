@@ -37,7 +37,7 @@
   <!-- listes des recettes que je sais faire -->
   <ul>
     <li><a href="/recette/omellete">Recette de l'omellettte du chef</a> </li>
-    <li><a href="/recette/fritte/">La fritte belge</a></li>
+    <li><?php include $_SERVER['DOCUMENT_ROOT']."/Projets/recette/recettes/fritte/fritte.php"; ?>La fritte belge</a></li>
     <li><a href="/crepe">recettes de crepes</a></li>
   </ul>
 </section>
