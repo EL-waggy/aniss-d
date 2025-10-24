@@ -8,7 +8,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MasterchefLab</title>
+  <title>MasterchefLab - 🍟</title>
   <link rel="stylesheet" href="/css/style.css">
   <meta name="description" content="Portfolio et blog d'Aniss Dah : développement web et expérimentations numériques.">
 
@@ -54,7 +54,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
   </ul>
 </section>
 <section>
-  <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
+  <p>🍟 voici la recette des fritte traditionnelle belge croquante et mouelleuse a  l'interieur🍟<</p>
 </section>
 
 <!-- Footer -->
