@@ -55,6 +55,13 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 </section>
 <section>
   <p>🍟 voici la recette des fritte traditionnelle belge croquante et mouelleuse a  l'interieur🍟<</p>
+
+  <h2>Voici la liste des ingredients</h2>
+  <ol>
+    <li>patates(2 a 3 patate par personnes)</li>
+    <li>Huile de fritture (vegetal de preference, pas d'huile d'olive!)</li>
+    <li>Sel (et paprika optionnel)</li>
+  </ol>
 </section>
 
 <!-- Footer -->
