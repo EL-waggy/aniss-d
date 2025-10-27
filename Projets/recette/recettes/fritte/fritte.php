@@ -67,7 +67,9 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 
 </section>
 <section>
-
+  <h2>Preparation</h2>
+  <p>eplucher les papates et coupé les <br> ensuite faite la methode des deux cuissons </p>
+  <p> 3 min de cuisson a basse temperateur +- 160 degree (ou a la temperature de votre choix) puis laissez refroidir 5 min puis replonger les frittes a 170 degree jusqu'q obtiention de lq couleur souhaitée</p>
 </section>
 
 <!-- Footer -->
