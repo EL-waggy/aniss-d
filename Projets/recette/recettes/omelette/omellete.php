@@ -58,6 +58,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
 
 <article>
   <section>
+    <h2>Pour faire une bonne omelette</h2>
     <h2><b> Liste des ingredients</b></h2>
       <ul>
         <p>Pour 1 personne: </p>
