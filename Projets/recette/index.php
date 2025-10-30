@@ -51,9 +51,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/partial/bootstrap.php';
     <li><a href="/Projets/recette/recettes/crepes/crepes.php">recettes de crepes</a></li>
   </ul>
 </section>
+<article>
+<section>
+ <p>mes prochaines recettes :</p>
+</section>
+
 <section>
 <p> cette section est en cours de reflexion de mise en page merci de patienter</p>
 </section>
+</article>
 <body>
 <!-- Footer -->
 <?php include $_SERVER['DOCUMENT_ROOT']."/partial/footer.php"; ?>
