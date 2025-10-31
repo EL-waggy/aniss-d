@@ -66,7 +66,7 @@ include __DIR__ . '/partial/bootstrap.php';
       <article class="about-card">
         <h3>Développement</h3>
 
-        <p>Je construis des interfaces réactives, </p>
+        <p>Je construis des interfaces réactives,cette page est vouée a etre modifier </p>
 
       </article>
       <article class="about-card">
